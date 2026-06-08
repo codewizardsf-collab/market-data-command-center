@@ -1,0 +1,14 @@
+{
+  "name": "market-data-command-center",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Real-time financial market data dashboard and analytics service for portfolio P&L, risk, and order-book visualization.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

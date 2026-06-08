@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Market Data Command Center</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Trading Operations</p>
+        <h1>Market Data Command Center</h1>
+      </div>
+      <div class="status-strip" aria-live="polite">
+        <span id="connectionState" class="status-pill">Connecting</span>
+        <span id="lastUpdate">Waiting for feed</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="chart-panel" aria-labelledby="chartTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Live Feed</p>
+            <h2 id="chartTitle">Price Movement</h2>
+          </div>
+          <label>
+            Symbol
+            <select id="symbolSelect"></select>
+          </label>
+        </div>
+        <canvas id="priceChart" width="920" height="320" aria-label="Live price chart"></canvas>
+      </section>
+
+      <section class="metrics-panel" aria-labelledby="riskTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Risk</p>
+            <h2 id="riskTitle">Exposure Snapshot</h2>
+          </div>
+          <span id="riskStatus" class="status-pill">Normal</span>
+        </div>
+        <dl class="metric-grid">
+          <div>
+            <dt>Gross Exposure</dt>
+            <dd id="grossExposure">$0</dd>
+          </div>
+          <div>
+            <dt>Net Exposure</dt>
+            <dd id="netExposure">$0</dd>
+          </div>
+          <div>
+            <dt>1D VaR 95</dt>
+            <dd id="var95">$0</dd>
+          </div>
+          <div>
+            <dt>Largest Position</dt>
+            <dd id="largestPosition">-</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="table-panel" aria-labelledby="portfolioTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Portfolio</p>
+            <h2 id="portfolioTitle">Mark To Market</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Day P&L</th>
+                <th>Total P&L</th>
+              </tr>
+            </thead>
+            <tbody id="portfolioRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="table-panel" aria-labelledby="bookTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Liquidity</p>
+            <h2 id="bookTitle">Order Book</h2>
+          </div>
+          <span id="spreadValue" class="status-pill">-</span>
+        </div>
+        <div class="book-grid">
+          <div>
+            <h3>Bids</h3>
+            <ol id="bidRows"></ol>
+          </div>
+          <div>
+            <h3>Asks</h3>
+            <ol id="askRows"></ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
