@@ -1,52 +1,48 @@
-# Market Data Command Center
+﻿# Market Data Command Center
 
-A dependency-free Node and browser dashboard that demonstrates financial frontend/backend behavior from the frontend, MERN, Go, Java, and QA resume tracks.
+A real-time market data dashboard that streams simulated ticks, renders price movement, calculates portfolio P&L, builds order-book depth, and exposes risk snapshots.
 
-It simulates market ticks, streams them to the browser over server-sent events, renders a live price chart, exposes order-book depth, and calculates portfolio P&L and risk metrics with deterministic tests.
+## Stack
 
-## Enterprise Behaviors Demonstrated
+Node.js, browser dashboard, real-time market data
 
-- Real-time event stream using built-in Node HTTP APIs.
-- Deterministic market simulator for repeatable tests and demos.
-- Portfolio mark-to-market calculations with realized and unrealized P&L.
-- Order-book depth modeling with sorted bid/ask levels and spread calculation.
-- Risk snapshot with gross exposure, net exposure, concentration, and simple VaR estimate.
-- Browser dashboard with live charting, portfolio table, order book, risk metrics, and event log.
-- Node built-in test suite for financial calculation behavior.
+## Problem
 
-## Run
+Trading interfaces need live data handling, deterministic financial calculations, and low-friction operational visibility.
 
-```powershell
-npm start
-```
+## Architecture
 
-Open:
+- server.mjs serves static assets, API endpoints, and server-sent events.
+- market-simulator.mjs produces deterministic tick streams for testability.
+- Browser assets render chart, portfolio, order book, and risk panels.
 
-```text
-http://localhost:5177
-```
+## Implemented Production Readiness
 
-## Test
+- CI runs the market-data test suite.
+- Simulation accepts injectable time for deterministic tests.
+- The API separates portfolio, order-book, and stream concerns.
+
+## Run And Test
 
 ```powershell
 npm test
+npm start
+Open http://localhost:5177
 ```
 
-## Resume Mapping
+## Quality Gates
 
-This project supports bullets around:
+- Project-specific GitHub Actions workflow included under .github/workflows/ci.yml.
+- Generated build outputs and dependency folders are excluded through .gitignore.
+- Tests and validation commands are intentionally small enough to run during code review.
 
-- Real-time trading dashboards and WebSocket/SSE-style feeds.
-- Financial data rendering and P&L correctness.
-- High-volume market event simulation.
-- Frontend performance-minded state updates.
-- Backend API design for portfolio and order-book data.
-- QA automation around deterministic financial calculations.
+## Production Extension Points
 
-## Production Next Steps
-
-- Replace the simulator with Kafka, NATS, or exchange gateway feeds.
-- Add authenticated user portfolios and persisted trade history.
-- Add WebSocket transport when bidirectional order entry is needed.
-- Add Playwright visual checks for chart and table regressions.
+- Replace simulator with Kafka or exchange gateway feeds.
+- Add authenticated portfolios.
 - Add OpenTelemetry spans and browser performance metrics.
+
+## Repository Hygiene
+
+This repository contains original portfolio code only. It does not include employer source code, private resumes, generated binaries, local credentials, or large media files.
+
